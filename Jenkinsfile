@@ -21,7 +21,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'docker compose build --no-cache'
+         sh "BUILD_VERSION=${TAG} docker compose build --no-cache"
       }
     }
 
