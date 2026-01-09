@@ -10,7 +10,7 @@ services:
 
   public:
     build: ./public
-    image: david/frontend
+    image: ${DOCKER_USER}/frontend:${BUILD_VERSION:-latest}
     container_name: public
     networks:
       - app-network
@@ -21,7 +21,7 @@ services:
 
   server:
     build: ./server
-    image: david/backend
+    image: ${DOCKER_USER}/backend:${BUILD_VERSION:-latest}
     container_name: server
     networks:
       - app-network
