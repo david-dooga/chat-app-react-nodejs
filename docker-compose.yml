@@ -1,5 +1,3 @@
-version: '3.7'
-
 networks:
 
   app-network:
@@ -12,7 +10,7 @@ services:
 
   public:
     build: ./public
-    image: akurasy/frontend
+    image: david/frontend
     container_name: public
     networks:
       - app-network
@@ -23,7 +21,7 @@ services:
 
   server:
     build: ./server
-    image: akurasy/backend
+    image: david/backend
     container_name: server
     networks:
       - app-network
