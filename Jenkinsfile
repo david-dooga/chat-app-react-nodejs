@@ -6,13 +6,13 @@ pipeline {
 
     stage("Clean Ups"){
         steps{
-            sh 'docker-compose down'
+            sh 'docker compose down'
         }
     }
 
     stage('Build') {
       steps {
-        sh 'docker-compose build --no-cache'
+        sh 'docker compose build --no-cache'
       }
     }
 
@@ -22,7 +22,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: "${DOCKER_REGISTRY_CREDS}", passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
           sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin docker.io"
-          sh 'docker-compose push'
+          sh 'docker compose push'
         }
       }
     }
@@ -30,7 +30,7 @@ pipeline {
     stage("Deploy"){
 
         steps{
-            sh 'docker-compose up -d'
+            sh 'docker compose up -d'
         }
 
     }
